@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark">
+
+        <ImageView
+            android:id="@+id/IF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_if"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10sp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/intro"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/IF"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/food_3">
+
+
+        <Button
+            android:id="@+id/app_access"
+            style="@android:style/Theme.DeviceDefault"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/bouton_app"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

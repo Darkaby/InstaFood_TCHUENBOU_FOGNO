@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">InstaFood</string>
+    <string name="serveur_id_web">412484313928-k6ntos1rg8e5qg4tls00lh58fqtkjlv8.apps.googleusercontent.com</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="geolocalisation">Geolocation</string>
+    <string name="intro">Want to take a bite?</string>
+    <string name="choix_question">What will make you happy?</string>
+    <string name="bouton_app">Access to the app</string>
+    <string name="dialog_message">Do you want to log into your Google account?</string>
+    <string name="dialog_title">Log</string>
+    <string name="dialog_OK">Log in</string>
+    <string name="dialog_KO">Ignore</string>
+    <string name="text_google_page">Sign into your Google account!</string>
+    <string name="search">Search</string>
 </resources>

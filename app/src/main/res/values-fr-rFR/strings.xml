@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InstaFood</string>
+    <string name="sign_out">Se déconnecter</string>
+    <string name="geolocalisation">Géolocalisation</string>
+    <string name="intro">Un petit creux?</string>
+    <string name="choix_question">Qu\'est-ce qui vous ferais plaisir?</string>
+    <string name="bouton_app">Accéder à l\'application</string>
+    <string name="dialog_message">Voulez-vous vous connecter à votre compte Google?</string>
+    <string name="dialog_title">Connexion</string>
+    <string name="dialog_OK">Se connecter</string>
+    <string name="dialog_KO">Ignorer</string>
+    <string name="text_google_page">Connectez-vous avec votre compte Google!</string>
+    <string name="search">Recherche</string>
+</resources>
