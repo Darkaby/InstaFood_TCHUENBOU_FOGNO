@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bienvenue_text"
         android:textColor="@android:color/black"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="40sp"
         android:textSize="18sp"
         android:textStyle="bold"
         android:text="@string/choix_question"/>
@@ -38,6 +38,38 @@
         android:hint="@string/miam"
         android:editable="false"
         tools:ignore="LabelFor,TextFields" />
+
+
+
+    <TextView
+        android:id="@+id/place_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resto_lieu"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="100sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/choix_resto_edit_text"/>
+
+    <EditText
+        android:id="@+id/choix_resto_lieu_edit_text"
+        android:layout_width="250sp"
+        android:layout_height="35sp"
+        android:layout_marginTop="10sp"
+        android:background="@android:color/white"
+        android:layout_below="@id/place_text"
+        android:hint="@string/miam"
+        android:editable="false"
+        tools:ignore="LabelFor" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_lieu_resto"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_below="@id/choix_resto_lieu_edit_text"
+        android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_choix_resto"

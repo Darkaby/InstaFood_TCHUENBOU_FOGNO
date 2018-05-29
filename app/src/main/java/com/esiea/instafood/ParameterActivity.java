@@ -21,7 +21,6 @@ public class ParameterActivity extends AppCompatActivity {
     RecyclerView rv_choix;
     RecyclerView rv_place;
 
-    //private final String placeResto[] = {"Ma position", "Paris", "Lille", "Marseilles", "Lyon", "Cannes"};
     //final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 
@@ -43,7 +42,7 @@ public class ParameterActivity extends AppCompatActivity {
             }
         });
 
-        /*rv_place = (RecyclerView)findViewById(R.id.list_lieu_resto);
+        rv_place = (RecyclerView)findViewById(R.id.list_lieu_resto);
         rv_place.setLayoutManager(new LinearLayoutManager(this));
         rv_place.setAdapter(new PlaceAdapter());
 
@@ -54,7 +53,7 @@ public class ParameterActivity extends AppCompatActivity {
                 rv_place.setVisibility(View.VISIBLE);
                 placeSelection.getText().clear();
             }
-        });*/
+        });
 
     }
 
@@ -131,7 +130,9 @@ public class ParameterActivity extends AppCompatActivity {
         }
     }
 
-    /*public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>{
+    public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>{
+
+        private final String placeResto[] = {"Ma position", "Paris", "Lille", "Marseilles", "Lyon", "Cannes"};
 
         @Override
         public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -171,7 +172,7 @@ public class ParameterActivity extends AppCompatActivity {
 
             }
         }
-    }*/
+    }
 
 
 }
