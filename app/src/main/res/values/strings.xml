@@ -1,15 +1,28 @@
 <resources>
     <string name="app_name">InstaFood</string>
-    <string name="serveur_id_web">412484313928-k6ntos1rg8e5qg4tls00lh58fqtkjlv8.apps.googleusercontent.com</string>
     <string name="sign_out">Sign Out</string>
-    <string name="geolocalisation">Geolocation</string>
+    <string name="geolocalisation">My location</string>
     <string name="intro">Want to take a bite?</string>
-    <string name="choix_question">What will make you happy?</string>
+    <string name="choix_question">What would you like?</string>
     <string name="bouton_app">Access to the app</string>
-    <string name="dialog_message">Do you want to log into your Google account?</string>
+    <string name="dialog_message">Are you ready for an adventure %s?</string>
+    <string name="bienvenue_text">Welcome %s !</string>
+    <string name="inconnu">to you</string>
+    <string name="loading">Loading…</string>
     <string name="dialog_title">Log</string>
-    <string name="dialog_OK">Log in</string>
-    <string name="dialog_KO">Ignore</string>
+    <string name="dialog_OK">Let\'s go!</string>
+    <string name="dialog_KO">No</string>
     <string name="text_google_page">Sign into your Google account!</string>
-    <string name="search">Search</string>
+    <string name="resto">Look for restaurants</string>
+    <string name="miam">Miam…</string>
+    <string name="list_choix_resto">Chinese,Indian,Greek,African,Italian,Japanese,French,Fast Food,No particular choice</string>
+    <string name="resto_lieu">And what about the place?</string>
+    <string name="let_s_go">Let\'s go!</string>
+    <string name="help">Help</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_text_ko">You are already logged into your account</string>
+    <string name="sign_out_text_ok">Successful disconnection!</string>
+    <string name="sign_out_text_ko">You are not logged into any account</string>
+    <string name="help_parameter">Click on the fields to be able to choose your destination</string>
+    <string name="help_log">Sign in with your Gmail account. You can skip this step and access the application directly in the menu</string>
 </resources>

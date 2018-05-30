@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1059704551269-jagehqcbuh70hd3g2orufjrb5omde2er.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esiea.instafood",
+            "certificate_hash": "cf1f0909db0f01b3e86d5bf401811aeec5463c6a"
+          }
+        },
+        {
           "client_id": "1059704551269-f42gp4d6bhdd40eg2ok61qd424r8el0q.apps.googleusercontent.com",
           "client_type": 3
         },
@@ -33,8 +41,61 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059704551269-f42gp4d6bhdd40eg2ok61qd424r8el0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059704551269:android:0007212aa9a32a85",
+        "android_client_info": {
+          "package_name": "com.esiea.signingoogle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059704551269-epdev2pofqko7e852ktesta5eoi8quod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esiea.signingoogle",
+            "certificate_hash": "cf1f0909db0f01b3e86d5bf401811aeec5463c6a"
+          }
+        },
+        {
+          "client_id": "1059704551269-f42gp4d6bhdd40eg2ok61qd424r8el0q.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1059704551269-f42gp4d6bhdd40eg2ok61qd424r8el0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqb8DlWH8nKU-Ug0r37jxBmXmiXfh9gk0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059704551269-f42gp4d6bhdd40eg2ok61qd424r8el0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

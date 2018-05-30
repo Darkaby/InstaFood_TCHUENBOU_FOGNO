@@ -1,7 +1,10 @@
 package com.esiea.instafood;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,8 +17,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.esiea.instafood.RestaurantActivity.getLocation;
+
 public class ParameterActivity extends AppCompatActivity {
 
+    TextView bienvenue;
     EditText choixSelection;
     EditText placeSelection;
     RecyclerView rv_choix;
@@ -24,10 +30,17 @@ public class ParameterActivity extends AppCompatActivity {
     //final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 
+    @SuppressLint({"StringFormatInvalid"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameter);
+
+        bienvenue = (TextView)findViewById(R.id.bienvenue_text);
+        if (SignInActivity.connection)
+            bienvenue.setText(getString(R.string.bienvenue_text, SignInActivity.firebaseUser.getDisplayName()));
+        else
+            bienvenue.setText(getString(R.string.bienvenue_text, getString(R.string.inconnu)));
 
         rv_choix = (RecyclerView)findViewById(R.id.list_choix_resto);
         rv_choix.setLayoutManager(new LinearLayoutManager(this));
@@ -71,12 +84,27 @@ public class ParameterActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.geo:
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+getLocation().getLatitude()+","+getLocation().getLongitude()+"?q=Restaurants")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+getLocation().getLatitude()+","+getLocation().getLongitude() + "?z=20")));
+                //startActivity(new Intent(ParameterActivity.this, RestaurantActivity.class));
                 return true;
+
             case R.id.sign_out:
-                //Toast.makeText(MainActivity.this, " Item du Menu sélectionné", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                if (SignInActivity.firebaseUser != null)
+                    startActivity(new Intent(ParameterActivity.this, SignInActivity.class));
+                else
+                    new NotiClass(this, getString(R.string.sign_out_text_ko));
                 return true;
+
+            case R.id.sign_in:
+                if (SignInActivity.firebaseUser == null)
+                    startActivity(new Intent(ParameterActivity.this, SignInActivity.class));
+                else
+                    new NotiClass(this, getString(R.string.sign_in_text_ko));
+                return true;
+
+            case R.id.aide:
+                new NotiClass(this, getString(R.string.help), getString(R.string.help_parameter));
+
         }
         return super.onOptionsItemSelected(item);
     }

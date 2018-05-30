@@ -20,7 +20,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAnYVkPDWerM5AWh6Gw79_mh9xIg54c3Ws" />
+            android:value="AIzaSyAY_b6EuoNI5JyL7hhScaQFoiLtgi6bjXg" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -30,13 +30,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RestaurantActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".ParameterActivity"/>
 
         <service
             android:name=".LocalisationService"
             android:exported="false" />
 
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".ParameterActivity"/>
     </application>
 
 </manifest>

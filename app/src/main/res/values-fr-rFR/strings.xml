@@ -2,14 +2,29 @@
 <resources>
     <string name="app_name">InstaFood</string>
     <string name="sign_out">Se déconnecter</string>
-    <string name="geolocalisation">Géolocalisation</string>
+    <string name="geolocalisation">Ma position</string>
     <string name="intro">Un petit creux?</string>
     <string name="choix_question">Qu\'est-ce qui vous ferais plaisir?</string>
     <string name="bouton_app">Accéder à l\'application</string>
-    <string name="dialog_message">Voulez-vous vous connecter à votre compte Google?</string>
+    <string name="dialog_message">Alors %s, prêt pour l\'aventure?</string>
+    <string name="bienvenue_text">Bienvenue %s!</string>
+    <string name="inconnu"> à vous</string>
+    <string name="loading">Chargement…</string>
     <string name="dialog_title">Connexion</string>
-    <string name="dialog_OK">Se connecter</string>
-    <string name="dialog_KO">Ignorer</string>
+    <string name="dialog_OK">C\'est parti!</string>
+    <string name="dialog_KO">Non</string>
     <string name="text_google_page">Connectez-vous avec votre compte Google!</string>
-    <string name="search">Recherche</string>
+    <string name="resto">Rechercher des restaurants</string>
+    <string name="miam">Miam…</string>
+    <string name="list_choix_resto">Chinois,Indien,Grec,Africain,Italien,Japonais,Français,Fast Food,Aucun choix particulier</string>
+    <string name="resto_lieu">Et qu\'en est-il du lieu?</string>
+    <string name="let_s_go">Allons y!</string>
+    <string name="help">Aide</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="sign_in_text_ko">Vous êtes déjà connecté à votre compte</string>
+    <string name="sign_out_text_ok">Déconnection effective!</string>
+    <string name="sign_out_text_ko">Pas de compte trouvé</string>
+    <string name="help_parameter">Cliquer sur les champs pour pouvoir choisir votre destination</string>
+    <string name="help_log">Connectez-vous avec votre compte Gmail. Vous pouvez passer cette étape et accéder directement à l\'application grâce au menu</string>
+
 </resources>
