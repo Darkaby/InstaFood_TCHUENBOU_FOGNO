@@ -1,70 +1,38 @@
 package com.esiea.instafood;
 
-import android.Manifest;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import static com.esiea.instafood.LoadingActivity.getLocation;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class RestaurantActivity extends AppCompatActivity {
-
-    private FusedLocationProviderClient locationProviderClient;
-    private static Location location;
-    private MenuItem menuItem;
-    private RecyclerView list_restaurants;
-    public static final String LOCATION_UPDATE = "com.esiea.instafood.LOCATION_UPDATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        //////////////////
-        //// Location ////
-        //////////////////
-        findLocation((TextView)findViewById(R.id.location));
-
 
         //////////////////
         // RecyclerView //
         //////////////////
-
-        /*RecyclerView list_restaurants = (RecyclerView)findViewById(R.id.rv_restaurant);
-        list_restaurants.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        list_restaurants.setAdapter(new RestoAdaptater(getRestoFromFile()));
-
-        IntentFilter intentFilter = new IntentFilter(LOCATION_UPDATE);
-        LocalBroadcastManager.getInstance(this).registerReceiver(new LocationUpdate(), intentFilter);*/
+        RecyclerView list_restaurants = (RecyclerView)findViewById(R.id.rv_restaurant);
+        list_restaurants.setLayoutManager(new LinearLayoutManager(RestaurantActivity.this));
+        list_restaurants.setAdapter(new RestaurantAdapter());
 
     }
 
@@ -81,15 +49,30 @@ public class RestaurantActivity extends AppCompatActivity {
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.geo:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+getLocation().getLatitude()+","+getLocation().getLongitude()+"?q=Restaurants")));
-                return true;
-            case R.id.sign_out:
-                //Toast.makeText(MainActivity.this, " Item du Menu sélectionné", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(MainActivity.this, SecondActivity.class));
-                return true;
-        }
+            switch (item.getItemId()){
+                case R.id.geo:
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+getLocation().getLatitude()+","+getLocation().getLongitude() + "?z=20")));
+
+                    return true;
+
+                case R.id.sign_out:
+                    if (SignInActivity.firebaseUser != null)
+                        startActivity(new Intent(RestaurantActivity.this, SignInActivity.class));
+                    else
+                        new NotiClass(this, getString(R.string.sign_out_text_ko));
+                    return true;
+
+                case R.id.sign_in:
+                    if (SignInActivity.firebaseUser == null)
+                        startActivity(new Intent(RestaurantActivity.this, SignInActivity.class));
+                    else
+                        new NotiClass(this, getString(R.string.sign_in_text_ko));
+                    return true;
+
+                case R.id.aide:
+                    new NotiClass(this, getString(R.string.help), getString(R.string.help_parameter));
+
+            }
         return super.onOptionsItemSelected(item);
     }
 
@@ -97,125 +80,82 @@ public class RestaurantActivity extends AppCompatActivity {
     // Gestion Menu //
     //////////////////
 
-    ///////////////////////////////
-    // Localisation du téléphone //
-    ///////////////////////////////
-
-    public void findLocation (final TextView textView){
-
-        LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) &&
-                    ActivityCompat.shouldShowRequestPermissionRationale(this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        1);
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        2);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-                //return;
-            }
-        } else {
-
-            assert lm != null;
-            Intent intent = new Intent(this, GPSUpdateReceiver.class);
-            PendingIntent pending = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, pending);
-
-            setLocation(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-            if (location != null){
-                textView.append("Longitude: " + location.getLongitude() + "; Latitude: " + location.getLatitude());
-                LocalisationService.startActionLocal(RestaurantActivity.this, location);
-            }
-
-            lm.removeUpdates(pending);
-        }
-
-    }
-
-        public class LocationUpdate extends BroadcastReceiver {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.i("TAG", "Téléchargement terminé"); // prévoir une action de notification ici
-
-            }
-        }
-
-    public class GPSUpdateReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            setLocation((Location) intent.getParcelableExtra(LocationManager.KEY_LOCATION_CHANGED));
-        }
-    }
-
-
-    @Override
-        public void onRequestPermissionsResult ( int requestCode, @NonNull String[] permissions,
-        @NonNull int[] grantResults){
-            switch (requestCode) {
-                case 10:
-                    if (ActivityCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            != PackageManager.PERMISSION_GRANTED &&
-                            ActivityCompat.checkSelfPermission(this,
-                                    Manifest.permission.ACCESS_COARSE_LOCATION)
-                                    != PackageManager.PERMISSION_GRANTED) {
-
-                        return;
-                    }
-                    //locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public static Location getLocation () {
-            return location;
-        }
-
-        public void setLocation(Location location){
-            RestaurantActivity.location = location;
-        }
-
-    ///////////////////////////////
-    // Localisation du téléphone //
-    ///////////////////////////////
 
     //////////////////
     // RecyclerView //
     //////////////////
 
+    public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>{
 
-    public JSONArray getRestoFromFile(){
-        try {
-            InputStream inputStream = new FileInputStream(getCacheDir() + "/" + "restos.json");
-            byte[] buffer = new byte[inputStream.available()];
-            inputStream.read(buffer);
-            inputStream.close();
-
-            return  new JSONArray(new String(buffer, "UTF-8"));
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            return new JSONArray();
+        @Override
+        public int getItemCount() {
+            return LocalisationService.getList_restaurant().size();
         }
+
+        @NonNull
+        @Override
+        public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View view = inflater.inflate(R.layout.list_item_resto, parent, false );
+            return new RestaurantViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(RestaurantViewHolder holder, int position) {
+            Restaurant restaurant = LocalisationService.getList_restaurant().get(position);
+            holder.display(restaurant);
+        }
+
+        public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+
+            private final TextView name;
+            private final TextView address;
+            private final ImageView imageView;
+            private Restaurant currentRestaurant;
+
+            public RestaurantViewHolder(final View itemView) {
+                super(itemView);
+
+                name = ((TextView) itemView.findViewById(R.id.name_restaurant));
+                address = ((TextView) itemView.findViewById(R.id.address_resto));
+                imageView = ((ImageView) itemView.findViewById(R.id.image_resto));
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new AlertDialog.Builder(itemView.getContext())
+                                .setTitle(currentRestaurant.getName())
+                                .setMessage(currentRestaurant.getAddress())
+                                .show();
+                    }
+                });
+            }
+
+            public void display(Restaurant restaurant) {
+                currentRestaurant = restaurant;
+                name.setText(restaurant.getName());
+                address.setText(restaurant.getAddress());
+                if(ParameterActivity.getType().equals(getString(R.string.African)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.africain));
+                else if (ParameterActivity.getType().equals(getString(R.string.Chinese)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.chinois));
+                else if (ParameterActivity.getType().equals(getString(R.string.Japanese)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.japonais));
+                else if (ParameterActivity.getType().equals(getString(R.string.Greek)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.grec));
+                else if (ParameterActivity.getType().equals(getString(R.string.Fast_Food)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.fastfood));
+                else if (ParameterActivity.getType().equals(getString(R.string.Italian)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.italien));
+                else if (ParameterActivity.getType().equals(getString(R.string.Indian)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.indien));
+                else if (ParameterActivity.getType().equals(getString(R.string.No_particular_choice)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.no_choice));
+                else if (ParameterActivity.getType().equals(getString(R.string.French)))
+                    imageView.setImageDrawable(getDrawable(R.drawable.francais));
+            }
+        }
+
     }
+
 }

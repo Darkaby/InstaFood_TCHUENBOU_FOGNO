@@ -29,7 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import static com.esiea.instafood.RestaurantActivity.getLocation;
+import static com.esiea.instafood.LoadingActivity.getLocation;
+
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
 

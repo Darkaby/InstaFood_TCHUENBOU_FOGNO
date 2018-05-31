@@ -13,8 +13,6 @@ public class NotiClass {
     //private String message;
 
     public NotiClass(Context context, NotificationManager notificationManager, String message) {
-        //this.type = type;
-        //this.message = message;
 
         final NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(context, "ChannelID")
                 .setSmallIcon(R.mipmap.ic_launcher)

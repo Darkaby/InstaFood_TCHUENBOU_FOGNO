@@ -9,14 +9,27 @@
     <string name="dialog_message">Alors %s, prêt pour l\'aventure?</string>
     <string name="bienvenue_text">Bienvenue %s!</string>
     <string name="inconnu"> à vous</string>
-    <string name="loading">Chargement…</string>
+    <string name="loading">Connexion…</string>
     <string name="dialog_title">Connexion</string>
     <string name="dialog_OK">C\'est parti!</string>
     <string name="dialog_KO">Non</string>
     <string name="text_google_page">Connectez-vous avec votre compte Google!</string>
     <string name="resto">Rechercher des restaurants</string>
     <string name="miam">Miam…</string>
-    <string name="list_choix_resto">Chinois,Indien,Grec,Africain,Italien,Japonais,Français,Fast Food,Aucun choix particulier</string>
+    <string name="Chinese">Chinois</string>
+    <string name="Indian">Indien</string>
+    <string name="Greek">Grec</string>
+    <string name="African">Africain</string>
+    <string name="Italian">Italien</string>
+    <string name="Japanese">Japonais</string>
+    <string name="French">Français</string>
+    <string name="Fast_Food">Fast Food</string>
+    <string name="No_particular_choice">Aucun choix particulier</string>
+    <string name="Paris">Paris</string>
+    <string name="Lille">Lille</string>
+    <string name="Marseilles">Marseilles</string>
+    <string name="Lyon">Lyon</string>
+    <string name="Cannes">Cannes</string>
     <string name="resto_lieu">Et qu\'en est-il du lieu?</string>
     <string name="let_s_go">Allons y!</string>
     <string name="help">Aide</string>
@@ -26,5 +39,6 @@
     <string name="sign_out_text_ko">Pas de compte trouvé</string>
     <string name="help_parameter">Cliquer sur les champs pour pouvoir choisir votre destination</string>
     <string name="help_log">Connectez-vous avec votre compte Gmail. Vous pouvez passer cette étape et accéder directement à l\'application grâce au menu</string>
+    <string name="access_list">Accéder à la liste</string>
 
 </resources>

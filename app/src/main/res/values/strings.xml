@@ -8,14 +8,27 @@
     <string name="dialog_message">Are you ready for an adventure %s?</string>
     <string name="bienvenue_text">Welcome %s !</string>
     <string name="inconnu">to you</string>
-    <string name="loading">Loading…</string>
+    <string name="loading">Logging…</string>
     <string name="dialog_title">Log</string>
     <string name="dialog_OK">Let\'s go!</string>
     <string name="dialog_KO">No</string>
     <string name="text_google_page">Sign into your Google account!</string>
     <string name="resto">Look for restaurants</string>
     <string name="miam">Miam…</string>
-    <string name="list_choix_resto">Chinese,Indian,Greek,African,Italian,Japanese,French,Fast Food,No particular choice</string>
+    <string name="Chinese">Chinese</string>
+    <string name="Indian">Indian</string>
+    <string name="Greek">Greek</string>
+    <string name="African">African</string>
+    <string name="Italian">Italian</string>
+    <string name="Japanese">Japanese</string>
+    <string name="French">French</string>
+    <string name="Fast_Food">Fast Food</string>
+    <string name="No_particular_choice">No particular choice</string>
+    <string name="Paris">Paris</string>
+    <string name="Lille">Lille</string>
+    <string name="Marseilles">Marseilles</string>
+    <string name="Lyon">Lyon</string>
+    <string name="Cannes">Cannes</string>
     <string name="resto_lieu">And what about the place?</string>
     <string name="let_s_go">Let\'s go!</string>
     <string name="help">Help</string>
@@ -25,4 +38,7 @@
     <string name="sign_out_text_ko">You are not logged into any account</string>
     <string name="help_parameter">Click on the fields to be able to choose your destination</string>
     <string name="help_log">Sign in with your Gmail account. You can skip this step and access the application directly in the menu</string>
+    <string name="access_list">Accéder à la liste</string>
+    <string name="_json_here">restos_%s.json</string>
+    <string name="_json">restos_%s_%s.json</string>
 </resources>
